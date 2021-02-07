@@ -1,0 +1,243 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7893,        235]
+NotebookOptionsPosition[      6931,        210]
+NotebookOutlinePosition[      7274,        225]
+CellTagsIndexPosition[      7231,        222]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Laser heating", "Title",
+ CellChangeTimes->{{3.8217244928816013`*^9, 
+  3.821724507366393*^9}},ExpressionUUID->"1e5e3487-181f-4b6f-8907-\
+9f6fee61d649"],
+
+Cell["Material properties", "Subtitle",
+ CellChangeTimes->{{3.8217245209292307`*^9, 
+  3.821724525079328*^9}},ExpressionUUID->"45a87fe5-8553-4d06-a50a-\
+90111404422f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Heat", " ", 
+    RowBox[{"conductivity", " ", "[", 
+     RowBox[{"W", "/", "mK"}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"k", " ", "=", " ", "398"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Specific", " ", 
+     RowBox[{"heat", " ", "[", 
+      RowBox[{
+       RowBox[{"J", "/", "kg"}], " ", "K"}], "]"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"cp", " ", "=", " ", "452.0"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"density", " ", "[", 
+     RowBox[{"kg", "/", 
+      SuperscriptBox["m", "3"]}], "]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Rho]", " ", "=", " ", "7870"}], ";"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"thermal", " ", 
+     RowBox[{"diffusivity", " ", "[", 
+      RowBox[{
+       SuperscriptBox["m", "2"], "/", "s"}], "]"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Alpha]", " ", ":=", " ", 
+     FractionBox["k", 
+      RowBox[{"\[Rho]", " ", "cp"}]]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", "reflectivity", " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"R", " ", "=", " ", "0.7"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.821724553088643*^9, 3.821724575402495*^9}, {
+  3.82172464571516*^9, 
+  3.821724674977*^9}},ExpressionUUID->"bd141712-8b71-43bc-9081-8080d94e0b9a"],
+
+Cell[CellGroupData[{
+
+Cell["1D heat conductivity model", "Subtitle",
+ CellChangeTimes->{{3.821724741885536*^9, 
+  3.82172475881522*^9}},ExpressionUUID->"86eb2470-233f-460b-a650-\
+209958daff5a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Irradiance", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"flux", " ", "density"}], ")"}], " ", "[", 
+     RowBox[{"W", "/", 
+      SuperscriptBox["m", "2"]}], "]"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Iv", " ", "=", " ", 
+     RowBox[{"1506", " ", "*", " ", 
+      SuperscriptBox["10", "6"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"calculation", " ", "of", " ", "absorbed", " ", "flux"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Io", " ", ":=", " ", 
+     RowBox[{"Iv", " ", "*", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "R"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"complementary", " ", "error", " ", "dunction"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ierfc", "[", "s_", "]"}], ":=", 
+     RowBox[{
+      FractionBox[
+       SuperscriptBox["E", 
+        RowBox[{"-", 
+         SuperscriptBox["s", "2"]}]], 
+       SqrtBox["Pi"]], "-", 
+      RowBox[{"s", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Erf", "[", "s", "]"}]}], ")"}]}]}]}], ";"}], " ", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "1", "d", " ", "heat", " ", "conductivity", " ", "model", " ", 
+      "function"}], ",", " ", 
+     RowBox[{"has", " ", "two", " ", 
+      RowBox[{"parameters", " ", "[", 
+       RowBox[{"depth", ",", " ", "time"}], "]"}]}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["T", "enaD"], "[", 
+      RowBox[{"z_", ",", "t_"}], "]"}], ":=", "    ", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"Io", "  ", 
+        SqrtBox[
+         RowBox[{"4", "\[Alpha]", " ", "t"}]], " "}], "k"], " ", "*", " ", 
+      RowBox[{"ierfc", "[", 
+       FractionBox["z", 
+        SqrtBox[
+         RowBox[{"4", " ", "\[Alpha]", " ", "t"}]]], "]"}]}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Temperature at depth of x mm and at time y [K]: \>\"", ",", 
+     RowBox[{
+      SubscriptBox["T", "enaD"], "[", 
+      RowBox[{"0", ",", "0.01"}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.821724858927267*^9, 3.821725003054319*^9}, {
+  3.821725125536354*^9, 
+  3.8217251270665226`*^9}},ExpressionUUID->"943cd9a8-492c-41cf-aa9d-\
+6b5dcfebd3a7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Gauss 3D hat conduction model", "Subtitle",
+ CellChangeTimes->{{3.821725063509454*^9, 
+  3.8217250865674205`*^9}},ExpressionUUID->"1c78cb6d-1843-497d-98e0-\
+a510023a3050"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"beam", " ", 
+    RowBox[{"diameter", " ", "[", "m", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"w", " ", "=", " ", 
+     RowBox[{"0.2", " ", "*", " ", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "3"}]]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"laser", " ", 
+     RowBox[{"power", " ", "[", "W", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Plas", " ", "=", " ", "400"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"calculation", " ", "of", " ", "absorbed", " ", "power"}], "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Po", " ", "=", " ", 
+     RowBox[{"Plas", " ", "*", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "R"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "calculation", " ", "of", " ", "temperature", " ", "after", " ", "time", 
+     " ", "x"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["T", "gauss"], "[", "t_", "]"}], ":=", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"2", " ", "Po"}], 
+       RowBox[{"w", " ", "k", " ", 
+        SqrtBox[
+         SuperscriptBox["Pi", "3"]]}]], 
+      RowBox[{"ArcTan", "[", 
+       FractionBox[
+        SqrtBox[
+         RowBox[{"4", " ", "\[Alpha]", " ", "t"}]], "w"], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Temperature after x seconds [K]: \>\"", ",", " ", 
+     RowBox[{
+      SubscriptBox["T", "gauss"], "[", "0.001", "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.8217251092208023`*^9, 
+  3.8217252150901213`*^9}},ExpressionUUID->"39597630-fac2-4729-b711-\
+012ad8cf3233"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1278, 1358},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 158, 3, 96, "Title",ExpressionUUID->"1e5e3487-181f-4b6f-8907-9f6fee61d649"],
+Cell[741, 27, 167, 3, 53, "Subtitle",ExpressionUUID->"45a87fe5-8553-4d06-a50a-90111404422f"],
+Cell[911, 32, 1478, 39, 232, "Input",ExpressionUUID->"bd141712-8b71-43bc-9081-8080d94e0b9a"],
+Cell[CellGroupData[{
+Cell[2414, 75, 171, 3, 53, "Subtitle",ExpressionUUID->"86eb2470-233f-460b-a650-209958daff5a"],
+Cell[2588, 80, 2329, 67, 254, "Input",ExpressionUUID->"943cd9a8-492c-41cf-aa9d-6b5dcfebd3a7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4954, 152, 177, 3, 53, "Subtitle",ExpressionUUID->"1c78cb6d-1843-497d-98e0-a510023a3050"],
+Cell[5134, 157, 1769, 49, 217, "Input",ExpressionUUID->"39597630-fac2-4729-b711-012ad8cf3233"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10669,        307]
-NotebookOptionsPosition[      9340,        274]
-NotebookOutlinePosition[      9683,        289]
-CellTagsIndexPosition[      9640,        286]
+NotebookDataLength[     10704,        307]
+NotebookOptionsPosition[      9375,        274]
+NotebookOutlinePosition[      9718,        289]
+CellTagsIndexPosition[      9675,        286]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,8 +44,8 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"k", " ", "=", " ", "398"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
-    RowBox[{"specifi\[CHacek]na", " ", 
-     RowBox[{"toplota", " ", "[", 
+    RowBox[{"specific", " ", 
+     RowBox[{"heat", " ", "[", 
       RowBox[{
        RowBox[{"J", "/", "kg"}], " ", "K"}], "]"}]}], "*)"}], 
    "\[IndentingNewLine]", 
@@ -98,8 +98,8 @@ Cell[BoxData[
  CellChangeTimes->{{3.821723109412386*^9, 3.821723134229288*^9}, {
    3.8217231851850896`*^9, 3.8217232617106876`*^9}, 3.8217232997405424`*^9, {
    3.821723410179254*^9, 3.821723412160256*^9}, {3.821723598393363*^9, 
-   3.8217236404129143`*^9}, 
-   3.821724270511921*^9},ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-\
+   3.8217236404129143`*^9}, 3.821724270511921*^9, {3.821724625508807*^9, 
+   3.8217246293941545`*^9}},ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-\
 6b26f1ae8a7a"]
 }, Open  ]],
 
@@ -273,7 +273,7 @@ b5bab95cb2d9"]
 }, Open  ]]
 },
 WindowSize->{1278, 1358},
-WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
 FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -293,20 +293,20 @@ Cell[580, 22, 247, 4, 96, "Title",ExpressionUUID->"d0694fbf-fcfc-4bc0-ade6-66ec6
 Cell[CellGroupData[{
 Cell[852, 30, 273, 4, 46, "Text",ExpressionUUID->"e7776f29-8d83-4bea-972f-e5f2f41673ae",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
-Cell[1128, 36, 2580, 66, 346, "Input",ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-6b26f1ae8a7a",
+Cell[1128, 36, 2615, 66, 346, "Input",ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-6b26f1ae8a7a",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.}]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3745, 107, 200, 3, 59, "Subsection",ExpressionUUID->"eab8e6af-1169-44dd-8528-b1b895dd36f5"],
-Cell[3948, 112, 1857, 50, 294, "Input",ExpressionUUID->"549a5d7b-f1f8-46a9-88d9-f39af6fc0cc3"]
+Cell[3780, 107, 200, 3, 59, "Subsection",ExpressionUUID->"eab8e6af-1169-44dd-8528-b1b895dd36f5"],
+Cell[3983, 112, 1857, 50, 294, "Input",ExpressionUUID->"549a5d7b-f1f8-46a9-88d9-f39af6fc0cc3"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5842, 167, 160, 3, 53, "Subtitle",ExpressionUUID->"0b38dff7-e44d-412f-b28a-304d23db9f2b"],
-Cell[6005, 172, 2285, 64, 282, "Input",ExpressionUUID->"24bb4c6e-e951-473f-8b10-8658ff1bb49b"]
+Cell[5877, 167, 160, 3, 53, "Subtitle",ExpressionUUID->"0b38dff7-e44d-412f-b28a-304d23db9f2b"],
+Cell[6040, 172, 2285, 64, 282, "Input",ExpressionUUID->"24bb4c6e-e951-473f-8b10-8658ff1bb49b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8327, 241, 163, 3, 53, "Subtitle",ExpressionUUID->"eb4b1f46-0ccf-47d4-ac34-626a1e3a1956"],
-Cell[8493, 246, 819, 24, 90, "Input",ExpressionUUID->"bf1dcdbf-bc04-4b7a-a5fc-b5bab95cb2d9"]
+Cell[8362, 241, 163, 3, 53, "Subtitle",ExpressionUUID->"eb4b1f46-0ccf-47d4-ac34-626a1e3a1956"],
+Cell[8528, 246, 819, 24, 90, "Input",ExpressionUUID->"bf1dcdbf-bc04-4b7a-a5fc-b5bab95cb2d9"]
 }, Open  ]]
 }, Open  ]]
 }
