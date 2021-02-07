@@ -1,0 +1,315 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10669,        307]
+NotebookOptionsPosition[      9340,        274]
+NotebookOutlinePosition[      9683,        289]
+CellTagsIndexPosition[      9640,        286]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Laser cutting and drilling", "Title",
+ CellChangeTimes->{{3.821722958398294*^9, 3.8217230077273693`*^9}, {
+  3.8217240723205166`*^9, 3.8217240747184706`*^9}},
+ FormatType->
+  "TextForm",ExpressionUUID->"d0694fbf-fcfc-4bc0-ade6-66ec616af48b"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Material properties", "Subtitle"]], "Text",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.8217230169603853`*^9, 3.821723030706133*^9}, 
+   3.821724270511921*^9},ExpressionUUID->"e7776f29-8d83-4bea-972f-\
+e5f2f41673ae"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"heat", " ", 
+    RowBox[{"conductivity", " ", "[", 
+     RowBox[{"W", "/", "mK"}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"k", " ", "=", " ", "398"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"specifi\[CHacek]na", " ", 
+     RowBox[{"toplota", " ", "[", 
+      RowBox[{
+       RowBox[{"J", "/", "kg"}], " ", "K"}], "]"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"cp", " ", "=", " ", "452.0"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"density", " ", "[", 
+     RowBox[{"kg", "/", 
+      SuperscriptBox["m", "3"]}], "]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Rho]", " ", "=", " ", "7870"}], ";"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"thermal", " ", 
+     RowBox[{"diffusivity", " ", "[", 
+      RowBox[{
+       SuperscriptBox["m", "2"], "/", "s"}], "]"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Alpha]", " ", ":=", " ", 
+     FractionBox["k", 
+      RowBox[{"\[Rho]", " ", "cp"}]]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"reflectivity", " ", "[", "]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"R", " ", "=", " ", "0.7"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"boiling", " ", 
+     RowBox[{"point", " ", "[", "\[Degree]C", "]"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Tb", " ", "=", " ", "2870"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Melting", " ", 
+     RowBox[{"heat", " ", "[", 
+      RowBox[{"J", "/", "kg"}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Lm", " ", "=", " ", 
+     RowBox[{"247", " ", "*", " ", 
+      SuperscriptBox["10", "3"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Boiling", " ", 
+     RowBox[{"heat", " ", "[", 
+      RowBox[{"J", "/", "kg"}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Lb", " ", "=", " ", 
+     RowBox[{"7018", " ", "*", " ", 
+      SuperscriptBox["10", "3"]}]}], ";"}]}]}]], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.821723109412386*^9, 3.821723134229288*^9}, {
+   3.8217231851850896`*^9, 3.8217232617106876`*^9}, 3.8217232997405424`*^9, {
+   3.821723410179254*^9, 3.821723412160256*^9}, {3.821723598393363*^9, 
+   3.8217236404129143`*^9}, 
+   3.821724270511921*^9},ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-\
+6b26f1ae8a7a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Laser properties", "Subtitle"]], "Subsection",
+ CellChangeTimes->{{3.8217234354634075`*^9, 
+  3.8217234418474007`*^9}},ExpressionUUID->"eab8e6af-1169-44dd-8528-\
+b1b895dd36f5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Laser", " ", 
+    RowBox[{"power", " ", "[", "W", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Plas", " ", "=", " ", "400"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"wavelength", " ", "[", "m", "]"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"\[Lambda]", "=", 
+     RowBox[{"10.6", " ", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]]}]}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"laser", " ", "beam", " ", 
+     RowBox[{"quality", " ", "[", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"M2", " ", "=", " ", "1.5"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"input", " ", "beam", " ", 
+     RowBox[{"diameter", " ", "[", "mm", "]"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d", " ", "=", " ", "10"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"w0", " ", "=", " ", 
+     FractionBox["d", "2"]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"focal", " ", 
+     RowBox[{"length", " ", "[", "mm", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f", " ", "=", " ", "250"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "function", " ", "for", " ", "calculation", " ", "of", " ", "focal"}], 
+     "-", 
+     RowBox[{"spot", " ", 
+      RowBox[{"diameter", " ", "[", "m", "]"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"wf", ":=", 
+     FractionBox[
+      RowBox[{"f", " ", "M2", " ", "\[Lambda]"}], 
+      RowBox[{"w0", " ", "Pi"}]]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.821723506209396*^9, 3.821723593527709*^9}, {
+  3.8217236428602576`*^9, 
+  3.8217236725572014`*^9}},ExpressionUUID->"549a5d7b-f1f8-46a9-88d9-\
+f39af6fc0cc3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Laser drilling", "Subtitle",
+ CellChangeTimes->{{3.821723739670495*^9, 
+  3.821723746466116*^9}},ExpressionUUID->"0b38dff7-e44d-412f-b28a-\
+304d23db9f2b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ambient", " ", "temperature", " ", "\[Degree]C"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Tok", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"material", " ", "thickness", " ", "m"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"deb", " ", "=", " ", 
+     RowBox[{"5", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "3"}]]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "function", " ", "for", " ", "calculation", " ", "of", " ", "fluence"}], 
+    " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Io", " ", ":=", 
+     FractionBox[
+      RowBox[{"2", " ", "Plas"}], 
+      RowBox[{"Pi", " ", 
+       SuperscriptBox["wf", "2"]}]]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "function", " ", "for", " ", "calculation", " ", "of", " ", "time", " ", 
+     "to", " ", "boil"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tb", ":=", 
+     RowBox[{
+      FractionBox["Pi", 
+       RowBox[{"4", " ", "\[Alpha]"}]], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"k", " ", 
+          RowBox[{"(", 
+           RowBox[{"Tb", " ", "-", " ", "Tok"}], ")"}], " "}], "Io"], ")"}], 
+       "2"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "funkction", " ", "for", " ", "calculation", " ", "of", " ", "laser", " ",
+      "drilling", " ", "speed"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"vb", ":=", 
+     FractionBox["Io", 
+      RowBox[{"\[Rho]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"cp", " ", "*", " ", 
+          RowBox[{"(", 
+           RowBox[{"Tb", " ", "-", " ", "Tok"}], ")"}]}], " ", "+", " ", "Lm",
+          " ", "+", " ", "Lb"}], ")"}]}]]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+    "\"\<Laser drilling speed [m/s]: \>\"", ",", "vb", ",", " ", 
+     "\"\<\\nTotal drilling time [s]: \>\"", ",", " ", 
+     RowBox[{"tb", " ", "+", 
+      RowBox[{"deb", "/", "vb"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.821723850704565*^9, 
+  3.8217240622424784`*^9}},ExpressionUUID->"24bb4c6e-e951-473f-8b10-\
+8658ff1bb49b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Laser cutting", "Subtitle",
+ CellChangeTimes->{{3.8217240797924814`*^9, 
+  3.8217241136014495`*^9}},ExpressionUUID->"eb4b1f46-0ccf-47d4-ac34-\
+626a1e3a1956"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"max", " ", "cutting", " ", "speed"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"vmax", " ", ":=", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "R"}], ")"}], "Plas"}], 
+      RowBox[{"wf", " ", "deb", " ", "\[Rho]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"cp", " ", 
+          RowBox[{"(", 
+           RowBox[{"Tb", " ", "-", " ", "Tok"}], ")"}]}], " ", "+", " ", 
+         "Lm"}], ")"}]}]]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Max laser cutting speed [m/s]: \>\"", ",", "vmax"}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.821724120594778*^9, 3.8217241236630774`*^9}, 
+   3.821724290978874*^9},ExpressionUUID->"bf1dcdbf-bc04-4b7a-a5fc-\
+b5bab95cb2d9"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1278, 1358},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 247, 4, 96, "Title",ExpressionUUID->"d0694fbf-fcfc-4bc0-ade6-66ec616af48b"],
+Cell[CellGroupData[{
+Cell[852, 30, 273, 4, 46, "Text",ExpressionUUID->"e7776f29-8d83-4bea-972f-e5f2f41673ae",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
+Cell[1128, 36, 2580, 66, 346, "Input",ExpressionUUID->"4aaeaed9-ddf9-4edd-9b06-6b26f1ae8a7a",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3745, 107, 200, 3, 59, "Subsection",ExpressionUUID->"eab8e6af-1169-44dd-8528-b1b895dd36f5"],
+Cell[3948, 112, 1857, 50, 294, "Input",ExpressionUUID->"549a5d7b-f1f8-46a9-88d9-f39af6fc0cc3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5842, 167, 160, 3, 53, "Subtitle",ExpressionUUID->"0b38dff7-e44d-412f-b28a-304d23db9f2b"],
+Cell[6005, 172, 2285, 64, 282, "Input",ExpressionUUID->"24bb4c6e-e951-473f-8b10-8658ff1bb49b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8327, 241, 163, 3, 53, "Subtitle",ExpressionUUID->"eb4b1f46-0ccf-47d4-ac34-626a1e3a1956"],
+Cell[8493, 246, 819, 24, 90, "Input",ExpressionUUID->"bf1dcdbf-bc04-4b7a-a5fc-b5bab95cb2d9"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
